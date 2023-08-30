@@ -35,9 +35,6 @@ export default function SignIn() {
             alignItems: 'center',
           }}
         >
-          {/* <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <LockOutlinedIcon />
-          </Avatar> */}
           <Typography component="h1" variant="h5" align='left' width='100%'>
             Sign in
           </Typography>
@@ -54,10 +51,10 @@ export default function SignIn() {
               name="email"
               autoComplete="email"
               variant='standard'
-              InputLabelProps={{ shrink: true, style: {color: 'tomato'} }}
+              InputLabelProps={{ shrink: true, style: { color: 'tomato' } }}
               color='error'
               autoFocus
-              />
+            />
             <TextField
               margin="normal"
               required
@@ -69,7 +66,7 @@ export default function SignIn() {
               autoComplete="current-password"
               variant='standard'
               color='error'
-              InputLabelProps={{ shrink: true, style: {color: 'tomato'} }}
+              InputLabelProps={{ shrink: true, style: { color: 'tomato' } }}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
@@ -86,7 +83,7 @@ export default function SignIn() {
             </Button>
             <Typography variant='body1' color='text.secondary' align='center'>
               Haven't an account? {' '}
-              <Link color='error.main' href='/'>Sign Up</Link>  
+              <Link color='error.main' href='/signup'>Sign Up</Link>
             </Typography>
           </Box>
         </Box>

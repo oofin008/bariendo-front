@@ -1,11 +1,10 @@
 import '../globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import { IBM_Plex_Sans } from 'next/font/google';
 import ThemeProvider from '../_theme/provider';
+import AuthProvider from '../_providers/AuthProvider';
 
 const inter = Inter({ subsets: ['latin'] })
-// const inter = IBM_Plex_Sans({ weight: ['400', '500', '700'], subsets: ['latin']});
 
 export const metadata: Metadata = {
   title: 'Bariendo Frontend',
@@ -20,9 +19,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ThemeProvider>
-          {children}
-        </ThemeProvider>
+        <AuthProvider>
+          <ThemeProvider>
+            {children}
+          </ThemeProvider>
+        </AuthProvider>
       </body>
     </html>
   )

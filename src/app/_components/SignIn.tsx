@@ -8,16 +8,35 @@ import Link from '@mui/material/Link';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import { SignInParams } from '@/core/domains/auth/firebaseAuthRepo';
+import { AuthMachineContext } from '@/core/presentation/auth/authMachine';
+import { redirect } from 'next/navigation';
 
 export default function SignIn() {
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const [ state, send, service ] = React.useContext(AuthMachineContext);
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    const email = data.get('email') as string;
+    const password = data.get('password') as string;
+    const isRememberMe = new Boolean(data.get('remember')).valueOf();
+    
+    const signInParams: SignInParams = {
+      email,
+      password,
+      isRememberMe,
+    }
+    try {
+      send({type:'LOG_IN', data: { signInParams }});
+    } catch (error) {
+      console.error('login error: ', error);
+    }
   };
+
+  if (state.matches('loggedIn')) {
+    redirect('/dashboard');
+  }
 
   return (
       <Container component="main" maxWidth="xs">
@@ -64,6 +83,8 @@ export default function SignIn() {
               InputLabelProps={{ shrink: true, style: { color: 'tomato' } }}
             />
             <FormControlLabel
+              id="remember"
+              name='remember'
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             />

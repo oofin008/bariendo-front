@@ -9,6 +9,12 @@ npm install
 npm run dev
 ```
 
+#### Routes
+Base route: localhost:3000
+- /signin
+- /signup
+- /dashboard
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
